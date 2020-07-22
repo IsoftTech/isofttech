@@ -1,6 +1,7 @@
 import React from "react";
-
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+
+import PrivateRoute from "./core/PrivateRoute";
 
 import About from "./core/About";
 import Contact from "./core/Contact";
@@ -11,6 +12,7 @@ import Product from "./core/Product";
 import Checkout from "./core/Checkout";
 import Signin from "./user/Signin";
 import Signup from "./user/Signup";
+import AddCatgory from "./core/admin/AddCatgory";
 
 const Routes = () => {
   return (
@@ -21,10 +23,12 @@ const Routes = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/contact" exact component={Contact} />
         <Route path="/about" exact component={About} />
-        <Route path="/admin" exact component={AdminPanel} />
-        <Route path="/dashboard" exact component={Dashboard} />
-        <Route path="/product" exact component={Product} />
-        <Route path="/checkout" exact component={Checkout} />
+        <PrivateRoute exact path="/admin" component={AdminPanel} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/product" component={Product} />
+        <PrivateRoute exact path="/checkout" component={Checkout} />
+        <PrivateRoute exact path="/create/category" component={AddCatgory} />
+
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>

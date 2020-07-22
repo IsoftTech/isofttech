@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 
 import $ from "jquery";
 
+import "./slick/slick.js";
+
 import Footer from "./Footer";
 import Menu from "./Menu";
-
-import "./slick/slick.js";
 
 const Home = () => {
   useEffect(() => {
@@ -43,7 +43,6 @@ const Home = () => {
 
   return (
     <div>
-      <div className="backdrop"></div>
       <Menu />
       <section>
         <div className="carousel-landing">

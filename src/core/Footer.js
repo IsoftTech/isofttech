@@ -32,16 +32,16 @@ const Footer = () => (
                 <Link to="/contact">Contact Us</Link>
               </li>
               <li className="footer-link">
-                <a href="#">Partners</a>
+                <Link to="/">Partners</Link>
               </li>
               <li className="footer-link">
-                <a href="#">For Developers</a>;{" "}
+                <Link to="/">For Developers</Link>;{" "}
               </li>
               <li className="footer-link">
-                <a href="#">Affiliates</a>
+                <Link to="/">Affiliates</Link>
               </li>
               <li className="footer-link">
-                <a href="#">Careers</a>
+                <Link to="/">Careers</Link>
               </li>
             </ul>
           </div>
@@ -49,22 +49,22 @@ const Footer = () => (
             <h4>Have questions?</h4>
             <ul className="footer-links">
               <li className="footer-link">
-                <a href="#">StubHub Community</a>
+                <Link to="/">StubHub Community</Link>
               </li>
               <li className="footer-link">
-                <a href="#">Help center</a>
+                <Link to="/">Help center</Link>
               </li>
               <li className="footer-link">
-                <a href="#">Last Minute Services</a>
+                <Link to="/">Last Minute Services</Link>
               </li>
               <li className="footer-link">
-                <a href="#">Live by StubHub</a>
+                <Link to="/">Live by StubHub</Link>
               </li>
               <li className="footer-link">
-                <a href="#">Cities</a>
+                <Link to="/">Cities</Link>
               </li>
               <li className="footer-link">
-                <a href="#">Gift cards</a>
+                <Link to="/">Gift cards</Link>
               </li>
             </ul>
           </div>
@@ -90,23 +90,25 @@ const Footer = () => (
             <p>
               © 2020 Love1Ticket. All Rights Reserved. Use of this website
               signifies your agreement to our
-              <a href="#">User Agreement, Privacy Notice and Cookie Notice</a>.
-              You are buying tickets from a third party; Love1Ticket is not the
-              ticket seller. Prices are set by sellers and may be above face
-              value. <a href="#">User Agreement change notifications</a>
+              <Link to="/">
+                User Agreement, Privacy Notice and Cookie Notice
+              </Link>
+              . You are buying tickets from a third party; Love1Ticket is not
+              the ticket seller. Prices are set by sellers and may be above face
+              value. <Link to="/">User Agreement change notifications</Link>
             </p>
           </div>
           <div className="col-lg-6 order-lg-2 order-md-1 social">
             <div className="social-links">
-              <a href="https://www.facebook.com/">
+              <Link to="https://www.facebook.com/">
                 <img src="assets/images/facebook.svg" alt="facebook" />
-              </a>
-              <a href="https://www.instagram.com/">
+              </Link>
+              <Link to="https://www.instagram.com/">
                 <img src="assets/images/instagram.svg" alt="instagram" />
-              </a>
-              <a href="https://www.twitter.com/">
+              </Link>
+              <Link to="https://www.twitter.com/">
                 <img src="assets/images/twitter.svg" alt="twitter" />
-              </a>
+              </Link>
             </div>
             <div className="download">
               <img src="assets/images/appstore.svg" alt="appstore" />

@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router-dom";
+import $ from "jquery";
 
 import Footer from "./Footer";
 import Menu from "./Menu";
 
 const Contact = () => {
+  useEffect(() => {
+    $(".carousel-about").slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: true,
+      variableWidth: true,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+    });
+
+    return () => {
+      $(".carousel-about").slick("unslick");
+    };
+  }, []);
+
   return (
     <div>
       <Menu />

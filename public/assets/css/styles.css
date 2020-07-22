@@ -144,6 +144,22 @@ input.input-custom:focus {
   border-color: #1dbac2;
 }
 
+.password-field-container {
+  position: relative;
+}
+
+.password-field-container .show-password-toggler {
+  position: absolute;
+  right: 8px;
+  top: 14px;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.password-field-container .show-password-toggler img {
+  height: 100%;
+}
+
 select.select-custom {
   margin: 0.5rem 0 2rem;
   padding: 0.75rem;
@@ -156,6 +172,11 @@ select.select-custom {
 select.select-custom:focus {
   outline: none;
   border-color: #1dbac2;
+}
+
+.error-placeholder {
+  color: #ec2371;
+  user-select: none;
 }
 
 .responsive-table {
@@ -343,6 +364,25 @@ select.select-custom:focus {
 .topbar-lg-wrapper {
   padding: 0 2rem;
   background-color: #fff;
+}
+
+.topbar-lg-wrapper .dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar-lg-wrapper .dropdown-menu {
+  width: 150%;
+  left: 0;
+}
+
+.topbar-lg-wrapper .dropdown-toggle > img {
+  margin-right: 0.5rem;
+}
+
+.topbar-lg-wrapper .dropdown-toggle > * {
+  color: #000;
 }
 
 @media screen and (max-width: 949px) {
@@ -1004,14 +1044,6 @@ section.register input[type="password"]:focus {
   border-color: #4c3389;
   outline: none;
   background-color: #fff;
-}
-
-section.signin input[type="text"],
-section.register input[type="text"] {
-  width: 49%;
-  margin-left: 0.225%;
-  margin-right: 0.225%;
-  display: inline-block;
 }
 
 section.signin button[type="submit"],

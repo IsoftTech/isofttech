@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
-
 import { withRouter } from "react-router-dom";
 
 import $ from "jquery";
 
+import "./slick/slick.js";
+
 import Footer from "./Footer";
 import Menu from "./Menu";
-
-import "./slick/slick.js";
 
 const About = () => {
   useEffect(() => {

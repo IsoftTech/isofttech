@@ -1,9 +1,201 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { getCurrentProfile, updateProfile } from "../store/actions/index";
+import $ from "jquery";
 
-import Footer from "./Footer";
 import Menu from "./Menu";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+  // Set initial state
+  const [profileState, setProfileState] = useState({
+    _id: "",
+    name: "",
+    email: "",
+    avatar: "",
+    phone: "",
+    role: "",
+  });
+
+  // Do stuff when component mounts
+
+  useEffect(() => {
+    // Get the profile info of currently logged in user from DB
+
+    props.getProfile(props.auth.user);
+
+    // Add event listeners on buttons
+    // Dashboard tab events
+
+    function tabChangeHandler(event) {
+      $(event.data.tabContainer + " .tabs > .tab").removeClass("active");
+      $(this).addClass("active");
+
+      var contentToShow = $(this).attr("data-tab-show");
+      $(event.data.contentContainer + " > " + event.data.content).removeClass(
+        "active"
+      );
+      $(event.data.contentContainer + " > #" + contentToShow).addClass(
+        "active"
+      );
+    }
+
+    $(".dashboard-tab-container .tabs > .tab").on(
+      "click",
+      "",
+      {
+        tabContainer: ".dashboard-tab-container",
+        contentContainer: ".dashboard-tab-content-container",
+        content: ".dashboard-content",
+      },
+      tabChangeHandler
+    );
+
+    // Orders tab events
+
+    $(".orders-tab-container .tabs > .tab").on(
+      "click",
+      "",
+      {
+        tabContainer: ".orders-tab-container",
+        contentContainer: ".orders-content-container",
+        content: ".orders-content",
+      },
+      tabChangeHandler
+    );
+
+    // Listings tab events
+
+    $(".listings-tab-container .tab").on(
+      "click",
+      "",
+      {
+        tabContainer: ".listings-tab-container",
+        contentContainer: ".listings-content-container",
+        content: ".listings-content",
+      },
+      tabChangeHandler
+    );
+
+    // Sales tab events
+
+    $(".sales-tab-container .tab").on(
+      "click",
+      "",
+      {
+        tabContainer: ".sales-tab-container",
+        contentContainer: ".sales-content-container",
+        content: ".sales-content",
+      },
+      tabChangeHandler
+    );
+
+    // Payments tab events
+
+    $(".payments-tab-container .tab").on(
+      "click",
+      "",
+      {
+        tabContainer: ".payments-tab-container",
+        contentContainer: ".payments-content-container",
+        content: ".payments-content",
+      },
+      tabChangeHandler
+    );
+
+    // Favourites tab events
+
+    $(".favourites-tab-container .tab").on(
+      "click",
+      "",
+      {
+        tabContainer: ".favourites-tab-container",
+        contentContainer: ".favourites-content-container",
+        content: ".favourites-content",
+      },
+      tabChangeHandler
+    );
+
+    // Settings tab events
+
+    $(".settings-tab-container .tab").on(
+      "click",
+      "",
+      {
+        tabContainer: ".settings-tab-container",
+        contentContainer: ".settings-content-container",
+        content: ".settings-content",
+      },
+      tabChangeHandler
+    );
+
+    // Password toggler events
+
+    $(".show-password-toggler").click(function () {
+      const toggleImg = $(this).find("img");
+      const inputField = $(this).siblings("input");
+      if (toggleImg.attr("src") === "/assets/images/show-password-icon.png") {
+        toggleImg.attr("src", "/assets/images/hide-password-icon.jpg");
+        inputField.attr("type", "text");
+      } else if (
+        toggleImg.attr("src") === "/assets/images/hide-password-icon.jpg"
+      ) {
+        toggleImg.attr("src", "/assets/images/show-password-icon.png");
+        inputField.attr("type", "password");
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const creatAvatarPlaceholderFromName = (profile) => {
+      let { name } = profile;
+      let namePartList = name.split(" ");
+      name = "";
+      namePartList.forEach((namePart) => {
+        name += namePart.slice(0, 1);
+      });
+      return name;
+    };
+
+    // Set the profile state once received from the db
+
+    if (props.profile) {
+      let { _id, email, name, phone, photo, role } = props.profile;
+
+      setProfileState({
+        // ...props.profile,
+        _id,
+        email,
+        name,
+        phone,
+        photo,
+        role,
+        avatar: creatAvatarPlaceholderFromName(props.profile),
+      });
+    }
+  }, [props.profile]);
+
+  // Form input change handler
+
+  const inputChangeHandler = (e) => {
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
+
+    setProfileState((prevState) => {
+      return {
+        ...prevState,
+        [inputName]: inputValue,
+      };
+    });
+  };
+
+  // Form submit handler
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    props.updateProfile(profileState, props.history);
+  };
+
   return (
     <div>
       <Menu />
@@ -11,7 +203,8 @@ const Dashboard = () => {
       <main>
         <section className="dashboard-hero">
           <img src="assets/images/wave.png" alt="" className="wave" />
-          <h2>User Dashboard</h2>
+          {/* <h2>User Dashboard</h2> */}
+          <h2>Welcome back <br/>{profileState.name}</h2>
         </section>
 
         <section className="dashboard-main">
@@ -22,24 +215,31 @@ const Dashboard = () => {
                   <div className="profile-img">
                     <div className="img">
                       <div className="text">
-                        <h3>JD</h3>
+                        <h3>{profileState.avatar}</h3>
                       </div>
                     </div>
                   </div>
                   <div className="profile-name">
-                    <h3>John Doe</h3>
+                    <h3>{profileState.name}</h3>
                   </div>
                 </div>
                 <div className="dashboard-tab-container">
                   <ul className="tabs">
-                    <li data-tab-show="profile" className="tab active">
-                      My Profile
+                  <li data-tab-show="dashboard" className="tab active">
+                      Dashboard
                     </li>
+                   
                     <li data-tab-show="orders" className="tab">
                       My Orders
                     </li>
+                    <li data-tab-show="cart" className="tab">
+                      Cart
+                    </li>
                     <li data-tab-show="billing" className="tab">
                       Billing / Shipping
+                    </li>
+                    <li data-tab-show="profile" className="tab ">
+                      My Profile
                     </li>
                     <li data-tab-show="settings" className="tab">
                       Settings
@@ -49,74 +249,106 @@ const Dashboard = () => {
               </div>
               <div className="col-md">
                 <ul className="dashboard-tab-content-container">
-                  <li id="profile" className="dashboard-content active">
+
+                  {/* DASHBOARD */}
+
+                  <li id="dashboard" className="dashboard-content active">
+                    <h1>My Dashboard</h1>
+                   
+                  
+
+                    <div className="dashboard-settings-container">
+                      <div className="dashboard-img-container">
+                      <div className="dashboard-inital">
+                          
+                        </div>
+                        
+                      </div>
+
+                   
+                    </div>
+                  </li>
+                  {/* END DASHBOARD */}
+                  <li id="profile" className="dashboard-content ">
                     <h1>My Profile</h1>
 
                     <div className="profile-settings-container">
                       <div className="profile-img-container">
                         <div className="profile-inital">
-                          <h2>JD</h2>
+                          <h2>{profileState.avatar}</h2>
                         </div>
-                        <h3>John Doe</h3>
+                        <h3>{profileState.name}</h3>
                       </div>
 
-                      <div className="form-container">
-                        <div className="form-control">
-                          <label for="name">Full Name</label>
-                          <input
-                            id="name"
-                            type="text"
-                            className="input-custom"
-                          />
-                        </div>
+                      <form onSubmit={formSubmitHandler}>
+                        <div className="form-container">
+                          <div className="form-control">
+                            <label htmlFor="name">Full Name</label>
+                            <input
+                              id="name"
+                              name="name"
+                              value={profileState.name || ""}
+                              type="text"
+                              className="input-custom"
+                              onChange={inputChangeHandler}
+                            />
+                          </div>
 
-                        <div className="form-control">
-                          <label for="email">Email</label>
-                          <input
-                            id="email"
-                            type="email"
-                            className="input-custom"
-                          />
-                        </div>
+                          <div className="form-control">
+                            <label htmlFor="email">Email</label>
+                            <input
+                              id="email"
+                              name="email"
+                              value={profileState.email || ""}
+                              type="email"
+                              className="input-custom"
+                              onChange={inputChangeHandler}
+                            />
+                          </div>
 
-                        <div className="form-control">
-                          <label for="username">Username</label>
-                          <input
-                            id="username"
-                            type="text"
-                            className="input-custom"
-                          />
-                        </div>
+                          <div className="form-control">
+                            <label htmlFor="username">Username / ID</label>
+                            <input
+                              id="username"
+                              name="username"
+                              value={profileState._id || ""}
+                              type="text"
+                              className="input-custom"
+                            />
+                          </div>
 
-                        <div className="form-control">
-                          <label for="phone">Phone</label>
-                          <input
-                            id="phone"
-                            type="text"
-                            className="input-custom"
-                          />
-                        </div>
+                          <div className="form-control">
+                            <label htmlFor="phone">Phone</label>
+                            <input
+                              id="phone"
+                              name="phone"
+                              value={profileState.phone || ""}
+                              type="text"
+                              className="input-custom"
+                              onChange={inputChangeHandler}
+                            />
+                          </div>
 
-                        <div className="form-control">
-                          <label for="password">Password</label>
-                          <input
-                            id="password"
-                            type="text"
-                            className="input-custom"
-                          />
-                        </div>
+                          <div className="form-control">
+                            <label htmlFor="password">Password</label>
+                            <div className="password-field-container">
+                              <input
+                                id="password"
+                                name="password"
+                                value={profileState.password || ""}
+                                type="password"
+                                className="input-custom"
+                                onChange={inputChangeHandler}
+                              />
+                              <span className="show-password-toggler">
+                                <img src="/assets/images/show-password-icon.png" />
+                              </span>
+                            </div>
+                          </div>
 
-                        <div className="form-control">
-                          <label for="confirm-password">Confirm Password</label>
-                          <input
-                            id="confirm-password"
-                            type="text"
-                            className="input-custom"
-                          />
+                          <button className="btn-blue">Save</button>
                         </div>
-
-                        <button className="btn-blue">Save</button>
-                      </div>
+                      </form>
                     </div>
                   </li>
                   <li id="orders" className="dashboard-content">
@@ -229,12 +461,74 @@ const Dashboard = () => {
                       </ul>
                     </div>
                   </li>
+
+                  {/* Cart */}
+
+                  <li id="cart" className="dashboard-content">
+                    <h1>My Cart</h1>
+
+                    <div className="cart-tab-container horizontal-tab-container">
+                      <ul className="tabs">
+                        <li data-tab-show="current" className="tab active">
+                          Pending
+                        </li>
+                      
+                      </ul>
+
+                      <ul className="cart-content-container content">
+                        <li
+                          id="current"
+                          className="tab-content cart-content active"
+                        >
+                          <div className="responsive-table">
+                            <table className="table-custom">
+                              <thead>
+                                <tr>
+                                  <th>Sr. No</th>
+                                  <th>Lorem Ipsum</th>
+                                  <th>Lorem Ipsum</th>
+                                  <th>Lorem Ipsum</th>
+                                  <th>Lorem Ipsum</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>1</td>
+                                  <td>Lorem Ipsum</td>
+                                  <td>Lorem Ipsum</td>
+                                  <td>Lorem Ipsum</td>
+                                  <td>Lorem Ipsum</td>
+                                </tr>
+                                <tr>
+                                  <td>2</td>
+                                  <td>Lorem Ipsum</td>
+                                  <td>Lorem Ipsum</td>
+                                  <td>Lorem Ipsum</td>
+                                  <td>Lorem Ipsum</td>
+                                </tr>
+                                <tr>
+                                  <td>3</td>
+                                  <td>Lorem Ipsum</td>
+                                  <td>Lorem Ipsum</td>
+                                  <td>Lorem Ipsum</td>
+                                  <td>Lorem Ipsum</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </li>
+                       
+                      </ul>
+                    </div>
+                  </li>
+
+                  {/* End Cart */}
                   <li id="billing" className="dashboard-content">
                     <h1>Billing / Shipping</h1>
 
                     <div className="form-container">
                       <div className="form-control">
-                        <label for="street-address">Street Address</label>
+                        <label htmlFor="street-address">Street Address</label>
                         <input
                           id="street-address"
                           type="text"
@@ -243,7 +537,7 @@ const Dashboard = () => {
                       </div>
 
                       <div className="form-control">
-                        <label for="apartment">Apartment</label>
+                        <label htmlFor="apartment">Apartment</label>
                         <input
                           id="apartment"
                           type="text"
@@ -252,12 +546,12 @@ const Dashboard = () => {
                       </div>
 
                       <div className="form-control">
-                        <label for="city">City</label>
+                        <label htmlFor="city">City</label>
                         <input id="city" type="text" className="input-custom" />
                       </div>
 
                       <div className="form-control">
-                        <label for="country">Country</label>
+                        <label htmlFor="country">Country</label>
                       </div>
                       <select
                         id="country"
@@ -567,7 +861,7 @@ const Dashboard = () => {
                       </select>
 
                       <div className="form-control">
-                        <label for="state">State</label>
+                        <label htmlFor="state">State</label>
                         <input
                           id="state"
                           type="text"
@@ -576,7 +870,7 @@ const Dashboard = () => {
                       </div>
 
                       <div className="form-control">
-                        <label for="zip">Zip / Postal Code</label>
+                        <label htmlFor="zip">Zip / Postal Code</label>
                         <input id="zip" type="text" className="input-custom" />
                       </div>
 
@@ -658,4 +952,22 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+    profile: state.profile.profile,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProfile: (profile) => dispatch(getCurrentProfile(profile)),
+    updateProfile: (profile, history) =>
+      dispatch(updateProfile(profile, history)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Dashboard));

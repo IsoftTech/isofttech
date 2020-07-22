@@ -1,9 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import $ from "jquery";
 
-import Footer from "./Footer";
 import Menu from "./Menu";
 
 const Checkout = () => {
+  useEffect(() => {
+    function progress(done, current, divHide, divShow) {
+      $("." + done).addClass("done");
+      $("." + current).addClass("active");
+      $("." + divHide).removeClass("show");
+      $("." + divHide).addClass("hide");
+      $("." + divShow).addClass("show");
+    }
+
+    $(".to-delivery").click(function () {
+      progress("auth", "delivery", "login-signup", "delivery");
+    });
+
+    $(".to-billing").click(function () {
+      progress("delivery", "billing", "delivery", "billing");
+    });
+
+    $(".to-payment").click(function () {
+      progress("billing", "order", "billing", "payment");
+    });
+
+    // Product Page events
+
+    $("[name='auth']").change(function () {
+      var id = this.id;
+      if (id === "sign-up") {
+        $(".for-signin").addClass("hide");
+        $(".for-signup").removeClass("hide");
+      } else if (id === "sign-in") {
+        $(".for-signup").addClass("hide");
+        $(".for-signin").removeClass("hide");
+      }
+    });
+
+    $(".answer-toggler").click(function () {
+      $(this).next().slideToggle();
+    });
+
+    return () => {
+      $(".to-delivery").off();
+      $(".to-billing").off();
+      $(".to-payment").off();
+      $("[name='auth']").off();
+      $(".answer-toggler").off();
+    };
+  }, []);
+
   return (
     <div className="checkout">
       <Menu />
@@ -211,7 +259,7 @@ const Checkout = () => {
                   You’re 100% covered by the SeatGeek Buyer's Guarantee. We
                   guarantee you’ll get the tickets you ordered on time.
                 </p>
-                <a href="#">Learn More</a>
+                <Link to="/">Learn More</Link>
                 <hr />
                 <h4>Questions?</h4>
                 <div className="q-a">
@@ -238,7 +286,7 @@ const Checkout = () => {
                   <div className="answer">
                     We take privacy and security seriously here at SeatGeek. You
                     can find more information in our privacy policy
-                    <a href="#">here.</a>
+                    <Link to="/">here.</Link>
                   </div>
                   <div className="answer-toggler">What is SeatGeek?</div>
                   <div className="answer">
