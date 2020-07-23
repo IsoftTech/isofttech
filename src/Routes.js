@@ -13,6 +13,8 @@ import Checkout from "./core/Checkout";
 import Signin from "./user/Signin";
 import Signup from "./user/Signup";
 import AddCatgory from "./core/admin/AddCatgory";
+import AddProduct from "./core/admin/AddProduct";
+
 
 const Routes = () => {
   return (
@@ -28,6 +30,8 @@ const Routes = () => {
         <PrivateRoute exact path="/product" component={Product} />
         <PrivateRoute exact path="/checkout" component={Checkout} />
         <PrivateRoute exact path="/create/category" component={AddCatgory} />
+        <PrivateRoute exact path="/create/product" component={AddProduct} />
+
 
         <Redirect to="/" />
       </Switch>

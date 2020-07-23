@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import $ from "jquery";
 
-
 import Menu from "./Menu";
 import { Link } from "react-router-dom";
 
@@ -138,7 +137,7 @@ const AdminPanel = () => {
       <main className="admin-panel">
         <section className="dashboard-hero">
           <img src="assets/images/wave.png" alt="" className="wave" />
-          <h2>Admin Dashboard</h2>
+          <h2>Admin Panel</h2>
         </section>
 
         <section className="dashboard-main">
@@ -159,19 +158,17 @@ const AdminPanel = () => {
                 </div>
                 <div className="dashboard-tab-container">
                   <ul className="tabs">
-                  
-                    <li data-tab-show="admin-products" className="tab active">
-                      Manage Products
-                    </li> 
-                    <li data-tab-show="admin-categories" className="tab">
-                      Manage Categories
-                    </li>
-                     <li data-tab-show="manage-users" className="tab ">
+                    <li data-tab-show="manage-users" className="tab active">
                       Manage Users
                     </li>
-                   
+                    <li data-tab-show="manage-products" className="tab">
+                      Manage Products
+                    </li>
                     <li data-tab-show="manage-admins" className="tab">
                       Manage Admins
+                    </li>
+                    <li data-tab-show="manage-category" className="tab">
+                      Manage Category
                     </li>
                     <li data-tab-show="admin-settings" className="tab">
                       Settings
@@ -182,193 +179,118 @@ const AdminPanel = () => {
               <div className="col-md">
                 <ul className="dashboard-tab-content-container">
                   <div className="background-texture"></div>
+                  <li id="manage-users" className="dashboard-content active">
+                    <h1>Manage Users</h1>
 
-                    {/* PRODUCT */}
+                    <div className="manage-users-container">
+                      <div class="orders-tab-container horizontal-tab-container">
+                        <ul class="tabs">
+                        <li data-tab-show="all-user" class="tab active">
+                            All Users
+                          </li>
+                          <li data-tab-show="add-user" class="tab ">
+                            Add User
+                          </li>
+                          <li data-tab-show="edit-user" class="tab">
+                            Edit User
+                          </li>
+                          <li data-tab-show="delete-user" class="tab">
+                            Delete User
+                          </li>
+                        </ul>
 
-                    <li id="admin-products" className="dashboard-content active">
-                    <h1>Products</h1>
+                        <ul class="orders-content-container content">
+                        <li
+                            id="all-user"
+                            class="tab-content orders-content active"
+                          >
+                            <h2>All Users</h2>
+                          </li>
+                          
+                          <li
+                            id="add-user"
+                            class="tab-content orders-content "
+                          >
+                            <h2>Add User</h2>
+                          </li>
+                          <li id="edit-user" class="tab-content orders-content">
+                            <h2>Edit User</h2>
+                          </li>
+                          <li
+                            id="delete-user"
+                            class="tab-content orders-content"
+                          >
+                            <h2>Delete User</h2>
+                          </li>
+                        </ul>
+                      </div>
+                      {/* <div className="form-container">
+                        <div className="form-control">
+                          <div className="search-container">
+                            <input
+                              id="name"
+                              type="text"
+                              className="input-custom"
+                            />
+                            <div className="search-icon">
+                              <img
+                                src="assets/images/search-dark.svg"
+                                alt="search"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div> */}
+                    </div>
+                  </li>
+                  <li id="manage-products" className="dashboard-content">
+                    <h1>Manage Products</h1>
 
-                    <div className="products-tab-container horizontal-tab-container">
-                      <ul className="tabs">
-                        <li data-tab-show="allproducts" className="tab active">
-                          All Products
+                    <div class="orders-tab-container horizontal-tab-container">
+                      <ul class="tabs">
+                      <li data-tab-show="all-product" class="tab active">
+                          All Product
                         </li>
-                        <li data-tab-show="addnewprod" className="tab">
-                          Add New
+                        <li data-tab-show="add-product" class="tab ">
+                          Add Product
                         </li>
-                        <li data-tab-show="addnewprod" className="tab">
-                          Purchased
+                        <li data-tab-show="edit-product" class="tab">
+                          Edit Product
                         </li>
-                        <li data-tab-show="purchased" className="tab">
-                          Pedning
-                        </li>
-                        <li data-tab-show="rejectedprod" className="tab">
-                          Rejected
-                        </li>
-                        <li data-tab-show="privacy" className="tab">
-                          Privacy
+                        <li data-tab-show="delete-product" class="tab">
+                          Delete Product
                         </li>
                       </ul>
 
-                      <ul className="products-content-container content">
-                        <li
-                          id="active"
-                          className="tab-content allproducts-content active"
+                      <ul class="orders-content-container content">
+                      <li
+                          id="all-product"
+                          class="tab-content orders-content active"
                         >
-                          <p>No orders to show</p>
+                          <h2>All Product</h2>
                         </li>
                         <li
-                          id="addnewprod"
-                          className="tab-content addnewprod-content"
+                          id="add-product"
+                          class="tab-content orders-content "
                         >
-                          <p>No orders to show...!!</p>
+                          <h2>Add Product</h2>
                         </li>
                         <li
-                          id="addnewprod"
-                          className="tab-content products-content"
+                          id="edit-product"
+                          class="tab-content orders-content"
                         >
-                          <p>No orders to show..!!</p>
+                          <h2>Edit Product</h2>
                         </li>
                         <li
-                          id="purchased"
-                          className="tab-content products-content"
+                          id="delete-product"
+                          class="tab-content orders-content"
                         >
-                          <p>No orders to show...!</p>
-                        </li>
-                        <li
-                          id="rejectedprod"
-                          className="tab-content products-content"
-                        >
-                          <p>No orders to show...!</p>
-                        </li>
-                        <li
-                          id="privacy"
-                          className="tab-content products-content"
-                        >
-                          <p>No orders to show...!</p>
+                          <h2>Delete Product</h2>
                         </li>
                       </ul>
                     </div>
-                  </li>
-                        
 
-                    {/* END PRODUCTS */}
-
-
-                   {/* CATEGORIES */}
-
-              <li id="admin-categories" className="dashboard-content">
-                    <h1>categories</h1>
-
-                    <div className="categories-tab-container horizontal-tab-container">
-                      <ul className="tabs">
-                        <li data-tab-show="activecategories" className="tab active">
-                          All categories
-                        </li>
-                        <li data-tab-show="addcategory" className="tab">
-                          <Link to="/create/category" />Add New
-                        </li>
-                       
-                      </ul>
-
-                      <ul className="categories-content-container content">
-                        <li
-                          id="activecategories"
-                          className="tab-content categories-content active"
-                        >
-                          <p>No orders to show</p>
-                        </li>
-                        <li
-                          id="addcategory"
-                          className="tab-content categories-content"
-                        >
-                          <p>Add new category</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </li>
-                        
-
-                    {/* END CATEGORIES */}
-
-
-                
-                     {/* USERS */}
-
-                    <li id="manage-users" className="dashboard-content ">
-                    <h1>User</h1>
-
-                    <div className="USER-tab-container horizontal-tab-container">
-                      <ul className="tabs">
-                        <li data-tab-show="allproducts" className="tab active">
-                          All Products
-                        </li>
-                        <li data-tab-show="addnewprod" className="tab">
-                          Add New
-                        </li>
-                        <li data-tab-show="addnewprod" className="tab">
-                          Purchased
-                        </li>
-                        <li data-tab-show="purchased" className="tab">
-                          Pedning
-                        </li>
-                        <li data-tab-show="rejectedprod" className="tab">
-                          Rejected
-                        </li>
-                        <li data-tab-show="privacy" className="tab">
-                          Privacy
-                        </li>
-                      </ul>
-
-                      <ul className="products-content-container content">
-                        <li
-                          id="active"
-                          className="tab-content allproducts-content active"
-                        >
-                          <p>No orders to show</p>
-                        </li>
-                        <li
-                          id="addnewprod"
-                          className="tab-content addnewprod-content"
-                        >
-                          <p>No orders to show...!!</p>
-                        </li>
-                        <li
-                          id="addnewprod"
-                          className="tab-content products-content"
-                        >
-                          <p>No orders to show..!!</p>
-                        </li>
-                        <li
-                          id="purchased"
-                          className="tab-content products-content"
-                        >
-                          <p>No orders to show...!</p>
-                        </li>
-                        <li
-                          id="rejectedprod"
-                          className="tab-content products-content"
-                        >
-                          <p>No orders to show...!</p>
-                        </li>
-                        <li
-                          id="privacy"
-                          className="tab-content products-content"
-                        >
-                          <p>No orders to show...!</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </li>
-                        
-
-                    {/* END USER */}
-
-
-                  <li id="manage-admins" className="dashboard-content">
-                    <h1>Manage Admins</h1>
-
-                    <div className="form-control">
+                    {/* <div className="form-control">
                       <div className="search-container">
                         <input id="name" type="text" className="input-custom" />
                         <div className="search-icon">
@@ -378,6 +300,102 @@ const AdminPanel = () => {
                           />
                         </div>
                       </div>
+                    </div> */}
+                  </li>
+
+                  <li id="manage-admins" className="dashboard-content">
+                    <h1>Manage Admins</h1>
+
+                    <div class="orders-tab-container horizontal-tab-container">
+                      <ul class="tabs">
+                        <li data-tab-show="add-admin" class="tab active">
+                          Add Admin
+                        </li>
+                        <li data-tab-show="edit-admin" class="tab">
+                          Edit Admin
+                        </li>
+                        <li data-tab-show="delete-admin" class="tab">
+                          Delete Admin
+                        </li>
+                      </ul>
+
+                      <ul class="orders-content-container content">
+                        <li
+                          id="add-admin"
+                          class="tab-content orders-content active"
+                        >
+                          <h2>Add Admin</h2>
+                        </li>
+                        <li id="edit-admin" class="tab-content orders-content">
+                          <h2>Edit Admin</h2>
+                        </li>
+                        <li
+                          id="delete-admin"
+                          class="tab-content orders-content"
+                        >
+                          <h2>Delete Admin</h2>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* <div className="form-control">
+                      <div className="search-container">
+                        <input id="name" type="text" className="input-custom" />
+                        <div className="search-icon">
+                          <img
+                            src="assets/images/search-dark.svg"
+                            alt="search"
+                          />
+                        </div>
+                      </div>
+                    </div> */}
+                  </li>
+
+                  <li id="manage-category" className="dashboard-content">
+                    <h1>Manage Category</h1>
+
+                    <div class="orders-tab-container horizontal-tab-container">
+                      <ul class="tabs">
+                      <li data-tab-show="all-category" class="tab active">
+                          Add Category
+                        </li>
+                        <li data-tab-show="add-category" class="tab ">
+                          Add Category
+                        </li>
+                        <li data-tab-show="edit-category" class="tab">
+                          Edit Category
+                        </li>
+                        <li data-tab-show="delete-category" class="tab">
+                          Delete Category
+                        </li>
+                      </ul>
+
+                      <ul class="orders-content-container content">
+                      <li
+                          id="all-category"
+                          class="tab-content orders-content active"
+                        >
+                          <h2>All Category</h2>
+                        </li>
+                        <li
+                          id="add-category"
+                          class="tab-content orders-content "
+                        >
+                          <h2>Add Category</h2>
+                        </li>
+                        <li
+                          id="edit-category"
+                          class="tab-content orders-content"
+                        >
+                          <h2>Edit Category</h2>
+                        </li>
+                        <li
+                          id="delete-category"
+                          class="tab-content orders-content"
+                        >
+                          <h2>Delete Category</h2>
+                        </li>
+                      </ul>
                     </div>
                   </li>
                   <li id="admin-settings" className="dashboard-content">
