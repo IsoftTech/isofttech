@@ -39,23 +39,23 @@ const AddProduct = () => {
     } = values;
 
     // load categories and set form data
-    // const init = () => {
-    //     getCategories().then(data => {
-    //         if (data.error) {
-    //             setValues({ ...values, error: data.error });
-    //         } else {
-    //             setValues({
-    //                 ...values,
-    //                 categories: data,
-    //                 formData: new FormData()
-    //             });
-    //         }
-    //     });
-    // };
+    const init = () => {
+        getCategories().then(data => {
+            if (data.error) {
+                setValues({ ...values, error: data.error });
+            } else {
+                setValues({
+                    ...values,
+                    categories: data,
+                    formData: new FormData()
+                });
+            }
+        });
+    };
 
-    // useEffect(() => {
-    //     init();
-    // }, []);
+    useEffect(() => {
+        init();
+    }, []);
 
     const handleChange = name => event => {
         const value = name === 'photo' ? event.target.files[0] : event.target.value;

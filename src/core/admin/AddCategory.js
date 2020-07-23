@@ -9,37 +9,34 @@ import { createCategory } from "./apiAdmin";
 
 
 
+const AddCategory = () => {
+  const [name, setName] = useState("");
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-const AddCategory = () =>{
-    const [name, setName] = useState('')
-    const [error, setError] = useState(false)
-    const [success, setSuccess] = useState(false)
+  // destructure user and token from localstorage
+  const { user, token } = isAuthenticated();
 
+  const handleChange = e => {
+      setError("");
+      setName(e.target.value);
+  };
 
-    //DESTRUCTURE USER AND TOKEN FROM LOCAL STORAGE
-    const {user, token} = isAuthenticated();
+  const clickSubmit = e => {
+      e.preventDefault();
+      setError("");
+      setSuccess(false);
+      // make request to api to create category
+      createCategory(user._id, token, { name }).then(data => {
+          if (data.error) {
+              setError(data.error);
+          } else {
+              setError("");
+              setSuccess(true);
+          }
+      });
+  };
 
-
-    const handleChange = (e) =>{
-        setError('')
-        setName(e.target.value)
-
-    }
-
-    const clickSubmit = (e) =>{
-        e.preventDefault()
-        setError('')
-        setSuccess(false)
-        //REQUEST TO API OF CATEGORY
-        createCategory(user._id, token, {name}).then(data =>{
-            if(data.error){
-              setError(true)
-            }else{
-              setError('')
-              setSuccess(true)
-            }
-        });
-    };
 
 
     const newCategoryForm = () =>(
