@@ -10,14 +10,14 @@ import { createCategory } from "./apiAdmin";
 
 
 
-const AddCatgory = () =>{
+const AddCategory = () =>{
     const [name, setName] = useState('')
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
 
 
     //DESTRUCTURE USER AND TOKEN FROM LOCAL STORAGE
-    const {user, token} = isAuthenticated()
+    const {user, token} = isAuthenticated();
 
 
     const handleChange = (e) =>{
@@ -31,22 +31,21 @@ const AddCatgory = () =>{
         setError('')
         setSuccess(false)
         //REQUEST TO API OF CATEGORY
-        createCategory(user._id, token, {name})
-        .then(data =>{
+        createCategory(user._id, token, {name}).then(data =>{
             if(data.error){
               setError(true)
             }else{
               setError('')
               setSuccess(true)
             }
-        })
-    }
+        });
+    };
 
 
     const newCategoryForm = () =>(
         <form onSubmit={clickSubmit}>
         <div className="form-container">
-          <div className="form-control">
+         
             <label htmlFor="name">Catgory Name</label>
             <input
               name="name"
@@ -56,11 +55,9 @@ const AddCatgory = () =>{
               onChange={handleChange}
               autoFocus required
             />
-          </div>
-
-         
+             
         </div>
-        <button className="btn btn-outlie-primary">Create Category</button>
+        <button className="btn btn-primary">Create Category</button>
       </form>
     );
 
@@ -99,4 +96,4 @@ const AddCatgory = () =>{
 }
 
 
-export default AddCatgory;
+export default AddCategory;

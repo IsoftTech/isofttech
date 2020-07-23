@@ -3,6 +3,9 @@ import $ from "jquery";
 
 import Menu from "./Menu";
 import { Link } from "react-router-dom";
+import AddProduct from "../core/admin/AddProduct";
+import AddCategory from "../core/admin/AddCategory";
+
 
 const AdminPanel = () => {
   // Do stuff when component mounts
@@ -273,7 +276,7 @@ const AdminPanel = () => {
                           id="add-product"
                           class="tab-content orders-content "
                         >
-                          <h2>Add Product</h2>
+                         <AddProduct/>
                         </li>
                         <li
                           id="edit-product"
@@ -381,7 +384,7 @@ const AdminPanel = () => {
                           id="add-category"
                           class="tab-content orders-content "
                         >
-                          <h2>Add Category</h2>
+                          <AddCategory/>
                         </li>
                         <li
                           id="edit-category"

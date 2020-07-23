@@ -12,7 +12,7 @@ import Product from "./core/Product";
 import Checkout from "./core/Checkout";
 import Signin from "./user/Signin";
 import Signup from "./user/Signup";
-import AddCatgory from "./core/admin/AddCatgory";
+import AddCategory from "./core/admin/AddCategory";
 import AddProduct from "./core/admin/AddProduct";
 
 
@@ -29,7 +29,7 @@ const Routes = () => {
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/product" component={Product} />
         <PrivateRoute exact path="/checkout" component={Checkout} />
-        <PrivateRoute exact path="/create/category" component={AddCatgory} />
+        <PrivateRoute exact path="/create/category" component={AddCategory} />
         <PrivateRoute exact path="/create/product" component={AddProduct} />
 
 

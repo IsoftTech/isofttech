@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {isAuthenticated} from "../../store/actions/index";
 import { Link } from 'react-router-dom';
+import $ from "jquery";
 import { createProduct, getCategories } from './apiAdmin';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const AddProduct = () => {
     const [values, setValues] = useState({
