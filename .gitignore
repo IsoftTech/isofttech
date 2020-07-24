@@ -18,16 +18,15 @@
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
  .gitignore
-        .netlify/
+       
         README.md
         _redirects
         debug.log
-        netlify.toml
+
         package-lock.json
         package.json
         public/
         src/
+# Local Netlify folder
+.netlify
