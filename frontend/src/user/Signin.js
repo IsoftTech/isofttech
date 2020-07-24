@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import $ from "jquery";
 
+import withErrorHandler from "../core/withErrorHandler";
 import Menu from "../core/Menu";
 import { loginStart } from "../store/actions/index";
 import * as actionTypes from "../store/actions/actionTypes";

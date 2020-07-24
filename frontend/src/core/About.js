@@ -64,7 +64,7 @@ const About = () => {
 
       <section className="about-hero">
         <img src="assets/images/wave.png" alt="" className="wave" />
-        <h2>What's SeatGeek?</h2>
+        <h2>What's Love1ticket?</h2>
       </section>
 
       <section className="features">

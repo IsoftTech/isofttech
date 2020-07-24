@@ -130,6 +130,20 @@ button.btn-blue svg {
   height: 1rem;
 }
 
+textarea.textarea-custom {
+  margin: 0.5rem 0 2rem;
+  padding: 0.75rem;
+  font-size: 1.125rem;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #e3e3e3;
+}
+
+textarea.textarea-custom {
+  outline: none;
+  border-color: #1dbac2;
+}
+
 input.input-custom {
   margin: 0.5rem 0 2rem;
   padding: 0.75rem;
@@ -177,6 +191,14 @@ select.select-custom:focus {
 .error-placeholder {
   color: #ec2371;
   user-select: none;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-warning {
+  color: #ffc107;
 }
 
 .responsive-table {
@@ -2388,7 +2410,9 @@ section.register a.forgot-password {
   color: #fff;
 }
 
-.admin-panel .row input {
+.admin-panel .row input,
+.admin-panel .row select,
+.admin-panel .row textarea {
   color: #5c6570;
 }
 

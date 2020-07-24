@@ -31,7 +31,7 @@ export const loginStart = (userData) => (dispatch) => {
         type: actionTypes.GET_ERRORS,
         payload: err.response.data,
       });
-    }); 
+    });
 };
 
 export const registerStart = (userData, history) => (dispatch) => {
@@ -55,26 +55,16 @@ export const setCurrentUser = (decoded) => {
 };
 
 export const logoutUser = (history) => (dispatch) => {
+  // Delete token from localStorage
+
+  localStorage.removeItem("jwtToken");
+  // remove token for future request
+  setAuthToken(false);
+  // Set current user to {} which will set isAuthenticated to false
+  dispatch(setCurrentUser({}));
+  // Redirect to login
+  history.push("/");
+
   // Hit the logout route in the backend
-  axios
-    .get("/api/signout")
-    .then((res) => {
-      // Delete token from localStorage
-      localStorage.removeItem("jwtToken");
-
-      // remove token for future request
-      setAuthToken(false);
-
-      // Set current user to {} which will set isAuthenticated to false
-      dispatch(setCurrentUser({}));
-
-      // Redirect to login
-      history.push("/");
-    })
-    .catch((err) => {
-      dispatch({
-        type: actionTypes.GET_ERRORS,
-        payload: err.response.data,
-      });
-    });
+  axios.get("/api/signout");
 };
