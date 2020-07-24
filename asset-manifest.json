@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/react-match-ticketing-project/static/js/main.27501e96.chunk.js",
-    "main.js.map": "/react-match-ticketing-project/static/js/main.27501e96.chunk.js.map",
-    "runtime-main.js": "/react-match-ticketing-project/static/js/runtime-main.dfd8534c.js",
-    "runtime-main.js.map": "/react-match-ticketing-project/static/js/runtime-main.dfd8534c.js.map",
-    "static/js/2.2bcead89.chunk.js": "/react-match-ticketing-project/static/js/2.2bcead89.chunk.js",
-    "static/js/2.2bcead89.chunk.js.map": "/react-match-ticketing-project/static/js/2.2bcead89.chunk.js.map",
-    "index.html": "/react-match-ticketing-project/index.html",
-    "precache-manifest.e1e20844cde326a9ee91869b113dac08.js": "/react-match-ticketing-project/precache-manifest.e1e20844cde326a9ee91869b113dac08.js",
-    "service-worker.js": "/react-match-ticketing-project/service-worker.js",
-    "static/js/2.2bcead89.chunk.js.LICENSE.txt": "/react-match-ticketing-project/static/js/2.2bcead89.chunk.js.LICENSE.txt"
+    "main.js": "/react-ticking-match-project/static/js/main.105e4167.chunk.js",
+    "main.js.map": "/react-ticking-match-project/static/js/main.105e4167.chunk.js.map",
+    "runtime-main.js": "/react-ticking-match-project/static/js/runtime-main.4b9b41a9.js",
+    "runtime-main.js.map": "/react-ticking-match-project/static/js/runtime-main.4b9b41a9.js.map",
+    "static/js/2.2bcead89.chunk.js": "/react-ticking-match-project/static/js/2.2bcead89.chunk.js",
+    "static/js/2.2bcead89.chunk.js.map": "/react-ticking-match-project/static/js/2.2bcead89.chunk.js.map",
+    "index.html": "/react-ticking-match-project/index.html",
+    "precache-manifest.b2e17f0639003297c970d1237f8f0604.js": "/react-ticking-match-project/precache-manifest.b2e17f0639003297c970d1237f8f0604.js",
+    "service-worker.js": "/react-ticking-match-project/service-worker.js",
+    "static/js/2.2bcead89.chunk.js.LICENSE.txt": "/react-ticking-match-project/static/js/2.2bcead89.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.dfd8534c.js",
+    "static/js/runtime-main.4b9b41a9.js",
     "static/js/2.2bcead89.chunk.js",
-    "static/js/main.27501e96.chunk.js"
+    "static/js/main.105e4167.chunk.js"
   ]
 }
